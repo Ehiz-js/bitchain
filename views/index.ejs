@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BitChain</title>
+		<link rel="icon" type="image/x-icon" href="/images/logo.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="stylesheet" href="styles/style.css" />
+		<script
+			src="https://kit.fontawesome.com/47496cab62.js"
+			crossorigin="anonymous"
+		></script>
+	</head>
+	<body>
+		<nav class="navbar">
+			<div class="nav-logo">
+				<img src="images/logo.png" alt="logo-img" /><span
+					>Bit<span>Chain</span></span
+				>
+			</div>
+
+			<ul class="nav-links">
+				<div class="nav-close-btn">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+
+				<li><a href="#home">Home</a></li>
+				<li><a href="#wallet">Search</a></li>
+				<li><a href="#block">Trending</a></li>
+				<li><a href="#converter">Converter</a></li>
+			</ul>
+			<div class="icon"><i class="fa-solid fa-bars"></i></div>
+		</nav>
+		<section id="home">
+			<div class="home-display">
+				<h2>BTC/USD</h2>
+				<h1><%= bitcoin.bitcoin.usd %><span>.00USD</span></h1>
+
+				<p>
+					24h <% let btcpercentChange = (bitcoin.bitcoin.usd_24h_change *
+					1).toFixed(2); %> <% if (bitcoin.bitcoin.usd_24h_change >= 0) { %>
+					<span class="positive-change"> +<%= btcpercentChange %>% ▲ </span>
+					<% } else { %>
+					<span class="negative-change"> <%= btcpercentChange %>% 🔻 </span>
+					<% } %>
+				</p>
+			</div>
+			<div class="home-chart">
+				<canvas id="btcChart"></canvas>
+			</div>
+			<div class="home-card-container">
+				<div class="home-cards">
+					<div class="home-card">
+						<div class="home-card-header">ETH/USD</div>
+						<div class="home-card-content">
+							<p><%= ethereum.ethereum.usd %> USD</p>
+							<p>
+								24h <% let ethpercentChange = (ethereum.ethereum.usd_24h_change
+								* 1).toFixed(2); %> <% if (ethereum.ethereum.usd_24h_change >=
+								0) { %>
+								<span class="positive-change">
+									+<%= ethpercentChange %>% ▲
+								</span>
+								<% } else { %>
+								<span class="negative-change">
+									<%= ethpercentChange %>% 🔻
+								</span>
+								<% } %>
+							</p>
+						</div>
+					</div>
+					<div class="home-card">
+						<div class="home-card-header">SOL/USD</div>
+						<div class="home-card-content">
+							<p><%= solana.solana.usd %> USD</p>
+							<p>
+								24h <% let solpercentChange = (solana.solana.usd_24h_change *
+								1).toFixed(2); %> <% if (solana.solana.usd_24h_change >= 0) { %>
+								<span class="positive-change">
+									+<%= solpercentChange %>% ▲
+								</span>
+								<% } else { %>
+								<span class="negative-change">
+									<%= solpercentChange %>% 🔻
+								</span>
+								<% } %>
+							</p>
+						</div>
+					</div>
+					<div class="home-card">
+						<div class="home-card-header">XRP/USD</div>
+						<div class="home-card-content">
+							<p><%= xrp.ripple.usd %> USD</p>
+							<p>
+								24h <% let xrppercentChange = (xrp.ripple.usd_24h_change *
+								1).toFixed(2); %> <% if (xrp.ripple.usd_24h_change >= 0) { %>
+								<span class="positive-change">
+									+<%= xrppercentChange %>% ▲
+								</span>
+								<% } else { %>
+								<span class="negative-change">
+									<%= xrppercentChange %>% 🔻
+								</span>
+								<% } %>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="wallet">
+			<div class="wallet-container">
+				<div class="wallet-search">
+					<form action="/search" method="POST">
+						<label for="search">Search For A Coin:</label>
+						<div class="search-container">
+							<input
+								type="text"
+								id="search"
+								name="search"
+								placeholder="Enter a coin name..."
+								required
+							/>
+							<button type="submit">
+								<i class="fa-solid fa-magnifying-glass-dollar"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+				<div class="wallet-card">
+					<h2>SYMBOL</h2>
+					<p>COIN NAME</p>
+					<% if (locals.data.result1Name) { %>
+					<h2><%= data.result1Symbol %></h2>
+					<p><%= data.result1Name %></p>
+					<h2><%= data.result2Symbol %></h2>
+					<p><%= data.result2Name %></p>
+					<h2><%= data.result3Symbol %></h2>
+					<p><%= data.result3Name %></p>
+					<% } else { %>
+					<h2>TON</h2>
+					<p>The Open Network</p>
+					<h2>PI</h2>
+					<p>Pi Coin</p>
+					<h2>PAWS</h2>
+					<p>PAWS Coin</p>
+					<% } %>
+				</div>
+			</div>
+			<div class="wallet-image">
+				<img src="images/wallet-bg.jpg" alt="wallet-bg" />
+			</div>
+		</section>
+		<section id="block">
+			<div class="block-search" hidden>
+				<form action="/search" method="get">
+					<label for="search">Token Transactions:</label>
+					<div class="search-container">
+						<input
+							type="text"
+							id="search"
+							name="search"
+							placeholder="Enter a token address..."
+							required
+						/>
+						<button type="submit">
+							<i class="fa-solid fa-magnifying-glass-dollar"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+			<div class="transactions-container">
+				<h2>Trending Coins</h2>
+				<div class="transactions-table">
+					<table>
+						<thead>
+							<tr>
+								<th>TX Name</th>
+								<th>Symbol</th>
+								<th>Rank</th>
+								<th>Price (USD)</th>
+								<th>Market Cap(USD)</th>
+								<th>Total Volume</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% trendData.trend.map((e) => { %>
+							<tr>
+								<td><%= e.item.name %></td>
+								<td><%= e.item.symbol %></td>
+								<td class="tx-hash"><%= e.item.market_cap_rank %></td>
+								<td class="tx-hash">
+									$<%= e.item.data.price.toFixed(6) %> USD
+								</td>
+								<td class="tx-hash"><%= e.item.data.market_cap%> USD</td>
+								<td class="tx-hash"><%= e.item.data.total_volume %> USD</td>
+							</tr>
+							<% }) %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<section id="converter">
+			<div class="swap-icon">
+				<i class="fa-solid fa-right-left"></i>
+			</div>
+			<div class="swap-card-container">
+				<form action="/swap" method="POST">
+					<div class="swap swap-input">
+						<label for="swap">Amount</label>
+						<input type="number" name="swap" id="swap-input" required />
+					</div>
+					<div class="swap swap-select-container">
+						<label for="">From</label>
+						<select name="swap-from" class="swap-select" required>
+							<option value="" disabled selected>Select a Crypto</option>
+							<% options.forEach((o)=>{ %>
+							<option value="<%= o.coin.name %>">
+								<%= o.coin.name %> (<%= o.coin.symbol.toUpperCase() %>)
+							</option>
+							<% }) %>
+						</select>
+					</div>
+					<div class="swap swap-select-container">
+						<label for="">To</label>
+						<select name="swap-to" class="swap-select2" required>
+							<option value="" disabled selected>Select a Crypto</option>
+							<% options.forEach((o)=>{ %>
+							<option value="<%= o.coin.name %>">
+								<%= o.coin.name %> (<%= o.coin.symbol.toUpperCase() %>)
+							</option>
+							<% }) %>
+						</select>
+					</div>
+
+					<div class="swap swap-button">
+						<button>Convert</button>
+					</div>
+				</form>
+				<% if (locals.swapData.swapResult) { %>
+				<div class="swap-result">
+					<h2>
+						<%= swapData.userAmount %> <%= swapData.swapFrom %> = <%=
+						swapData.swapResult %> <%= swapData.swapTo %>
+					</h2>
+				</div>
+				<% } %>
+			</div>
+		</section>
+		<section id="footer">
+			<footer>
+				<div class="copyright">©Ehizojie Azamegbe</div>
+				<div class="social-icons">
+					<a
+						href="https://linkedin.com/in/ehizojie-azamegbe-082ba52b9"
+						target="_blank"
+						><i class="fa-brands fa-linkedin"></i
+					></a>
+					<a href="https://github.com/Ehiz-js" target="_blank"
+						><i class="fa-brands fa-github"></i
+					></a>
+					<a href="https://x.com/devycrafter" target="_blank"
+						><i class="fa-brands fa-twitter"></i
+					></a>
+					<a href="https://www.instagram.com/ehiz.xd/" target="_blank"
+						><i class="fa-brands fa-instagram"></i
+					></a>
+					<a href="https://www.youtube.com/@EHIZXD" target="_blank"
+						><i class="fa-brands fa-youtube"></i
+					></a>
+					<a href="https://www.tiktok.com/@ehiz.xd" target="_blank"
+						><i class="fa-brands fa-tiktok"></i
+					></a>
+				</div>
+			</footer>
+		</section>
+
+		<script src="scripts/script.js"></script>
+	</body>
+</html>

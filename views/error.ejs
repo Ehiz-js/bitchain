@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>404 - Page Not Found | BitChain</title>
+		<style>
+			:root {
+				--bg-dark: #121212;
+				--bg-darker: #0a0a0a;
+				--primary: #f7931a; /* Bitcoin orange */
+				--text-light: #e0e0e0;
+				--text-muted: #9e9e9e;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: "Roboto", sans-serif;
+				background-color: var(--bg-dark);
+				color: var(--text-light);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				text-align: center;
+				background-image: radial-gradient(
+						circle at 25% 25%,
+						rgba(247, 147, 26, 0.1) 0%,
+						transparent 50%
+					),
+					radial-gradient(
+						circle at 75% 75%,
+						rgba(247, 147, 26, 0.1) 0%,
+						transparent 50%
+					);
+				overflow: hidden;
+			}
+
+			.error-container {
+				max-width: 600px;
+				padding: 2rem;
+				position: relative;
+			}
+
+			.error-code {
+				font-size: 8rem;
+				font-weight: 900;
+				margin: 0;
+				color: var(--primary);
+				text-shadow: 0 0 20px rgba(247, 147, 26, 0.4);
+				line-height: 1;
+			}
+
+			.error-message {
+				font-size: 1.75rem;
+				margin: 1rem 0 0.5rem;
+			}
+
+			.error-description {
+				color: var(--text-muted);
+				margin-bottom: 2rem;
+				line-height: 1.6;
+			}
+
+			.home-button {
+				display: inline-block;
+				padding: 12px 24px;
+				background-color: var(--primary);
+				color: var(--bg-dark);
+				text-decoration: none;
+				font-weight: 600;
+				border-radius: 50px;
+				transition: all 0.3s ease;
+				border: 2px solid var(--primary);
+			}
+
+			.home-button:hover {
+				background-color: transparent;
+				color: var(--primary);
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(247, 147, 26, 0.3);
+			}
+
+			.blockchain-animation {
+				position: absolute;
+				width: 300px;
+				height: 300px;
+				background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="45" y="10" width="10" height="80" rx="2" fill="%23F7931A" opacity="0.6"/><rect x="10" y="45" width="80" height="10" rx="2" fill="%23F7931A" opacity="0.6"/><circle cx="50" cy="50" r="8" fill="%23F7931A" opacity="0.8"/></svg>');
+				background-repeat: no-repeat;
+				opacity: 0.1;
+				z-index: -1;
+			}
+
+			.blockchain-animation:nth-child(1) {
+				top: 10%;
+				left: 10%;
+				animation: float 15s ease-in-out infinite;
+			}
+
+			.blockchain-animation:nth-child(2) {
+				bottom: 10%;
+				right: 10%;
+				animation: float 18s ease-in-out infinite reverse;
+			}
+
+			@keyframes float {
+				0%,
+				100% {
+					transform: translate(0, 0) rotate(0deg);
+				}
+				25% {
+					transform: translate(-10px, -10px) rotate(2deg);
+				}
+				50% {
+					transform: translate(10px, 10px) rotate(-2deg);
+				}
+				75% {
+					transform: translate(10px, -10px) rotate(2deg);
+				}
+			}
+
+			@media (max-width: 990px) {
+				.error-code {
+					font-size: 5rem;
+				}
+				.error-message {
+					font-size: 1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="blockchain-animation"></div>
+		<div class="blockchain-animation"></div>
+
+		<div class="error-container">
+			<h1 class="error-code">404</h1>
+			<h2 class="error-message">Block Not Found</h2>
+			<p class="error-description">
+				The page you're looking for has been mined away or never existed.<br />
+				Perhaps it's lost in the blockchain...
+			</p>
+			<a href="/" class="home-button">Return to Home</a>
+		</div>
+	</body>
+</html>
