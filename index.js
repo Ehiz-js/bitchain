@@ -6,7 +6,7 @@ dotenv.config();
 
 const COINGECKO_API_KEY = process.env.COINGECKO_API_KEY;
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 const API_URL = "https://api.coingecko.com/api/v3/";
 const config = {
 	params: { x_cg_demo_api_key: COINGECKO_API_KEY },
